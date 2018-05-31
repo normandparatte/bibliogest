@@ -64,11 +64,15 @@ public class GoodreadsAPI {
     Integer ratingsSum = xmlJSONObj.getJSONObject("book").getJSONObject("work")
         .getJSONObject("ratings_sum").getInt("content");
 
-    String auteurID = "";
-    String auteurName = "";
-    String auteurImage = "";
-    Integer auteurRatingsCount = 0;
-    Double auteurAverageRating = 0.0;
+    JSONObject auteurJSON = (JSONObject) xmlJSONObj.getJSONObject("book").getJSONObject("authors").getJSONArray("author").get(0);
+
+    System.out.println(auteurJSON.getString("name"));
+
+    String auteurID = String.valueOf(auteurJSON.getInt("id"));
+    String auteurName = auteurJSON.getString("name");
+    String auteurImage = auteurJSON.getJSONObject("image_url").getString("content");
+    Integer auteurRatingsCount = auteurJSON.getInt("ratings_count");
+    Double auteurAverageRating = auteurJSON.getDouble("average_rating");
 
     // Création de l'auteur
     Author author = new Author(auteurID, auteurName, auteurImage, auteurRatingsCount,
