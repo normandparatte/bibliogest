@@ -43,14 +43,28 @@ public class GoodreadsAPI {
     String imageUrl = xmlJSONObj.getJSONObject("book").getString("image_url");
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    String date =
-        xmlJSONObj.getJSONObject("book").getJSONObject("work")
-            .getJSONObject("original_publication_day").getInt("content") + "/" +
-            xmlJSONObj.getJSONObject("book").getJSONObject("work")
-                .getJSONObject("original_publication_month").getInt("content") + "/" +
-            xmlJSONObj.getJSONObject("book").getJSONObject("work")
-                .getJSONObject("original_publication_year").getInt("content");
-
+    String jour="";
+    String mois="";
+    String annee="";
+    try{
+      jour=String.valueOf(xmlJSONObj.getJSONObject("book").getJSONObject("work")
+          .getJSONObject("original_publication_day").getInt("content"));
+    }catch(Exception e){
+      jour="01";
+    }
+    try{
+      mois=String.valueOf(xmlJSONObj.getJSONObject("book").getJSONObject("work")
+          .getJSONObject("original_publication_month").getInt("content"));
+    }catch(Exception e){
+      mois="01";
+    }
+    try{
+      annee=String.valueOf(xmlJSONObj.getJSONObject("book").getJSONObject("work")
+          .getJSONObject("original_publication_year").getInt("content"));
+    }catch(Exception e){
+      annee="2000";
+    }
+    String date = jour + "/" + mois + "/" + annee;
     Date publication = null;
     try {
       publication = simpleDateFormat.parse(date);
@@ -64,8 +78,16 @@ public class GoodreadsAPI {
     Integer ratingsSum = xmlJSONObj.getJSONObject("book").getJSONObject("work")
         .getJSONObject("ratings_sum").getInt("content");
 
-    JSONObject auteurJSON = (JSONObject) xmlJSONObj.getJSONObject("book").getJSONObject("authors").getJSONArray("author").get(0);
-
+    JSONObject auteurJSON;
+    try {
+      // S'il y a plusieurs auteurs c'est un tableau
+      auteurJSON = (JSONObject) xmlJSONObj.getJSONObject("book").getJSONObject("authors")
+          .getJSONArray("author").get(0);
+    } catch(Exception e){
+      // Sinon c'est un objet
+      auteurJSON = (JSONObject) xmlJSONObj.getJSONObject("book").getJSONObject("authors")
+          .getJSONObject("author");
+    }
     String auteurID = String.valueOf(auteurJSON.getInt("id"));
     String auteurName = auteurJSON.getString("name");
     String auteurImage = auteurJSON.getJSONObject("image_url").getString("content");
