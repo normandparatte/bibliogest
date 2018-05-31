@@ -22,7 +22,7 @@ public class Author {
   // ----- CONSTRUCTEURS ---------------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
   /**
-   * Constructeur complet d'un autheur
+   * Constructeur complet d'un auteur
    * @param id
    * @param name
    * @param image_url
