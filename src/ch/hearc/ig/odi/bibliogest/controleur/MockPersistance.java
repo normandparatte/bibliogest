@@ -12,6 +12,7 @@ import ch.hearc.ig.odi.bibliogest.modele.api.GoodreadsAPI;
 import ch.hearc.ig.odi.bibliogest.modele.business.Author;
 import ch.hearc.ig.odi.bibliogest.modele.business.Book;
 import ch.hearc.ig.odi.bibliogest.modele.business.Bookcase;
+import ch.hearc.ig.odi.bibliogest.modele.business.Review;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,10 @@ public class MockPersistance {
     addBookToLibrary(b2);
     addBookToWhishlist(b3);
     addBookToLibrary(b4);
+
+    b1.addReview("Super livre !",5);
+    b2.addReview("Moins aimé que le premier ...",3);
+    b4.addReview("J'adore l'univers et le style de l'écriture",4);
   }
 
   public static void addBookToLibrary(Book book){
