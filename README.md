@@ -1,4 +1,4 @@
-# Biliogest - Projet évalué n°2
+# Bibliogest - Projet évalué n°2
 
 ## Participants
 
