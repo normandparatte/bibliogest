@@ -51,4 +51,17 @@ Toutes les sources sont disponibles dans le repository du projet.
 
 -- tests
 
+## Architecture logiciel
+### Découpage de l'application
+Le pattern MVC est utilisé pour le découpage de l'application (packages).
+Cependant, ce pattern est originellement créé uniquement pour la partie Vue/IHM d’une application. Mais ce dernier s’applique maintenant souvent dans le découpage de l’application comme dans ce projet même si ce n’est pas son idée de base.
+
+La partie vue n'existe pas dans le cas de notre projet car utilisant une WEB-APP, toute la gestion de la vue (IHM) se situe directement dans le dossier web se situant à la racine du projet.
+
+### Gestion de la persistance
+Afin de gérer la persistance des données, des mocks de persistances ont été mis en place. Ceci permettant de pouvoir faire des tests sur notre application sans devoir remettre des données à chaques fois que l'on relance l'application.
+
+A noter que dans le futur, cette gestion via des mocks devrait être remplacée par un autre moyen de persistance tel qu'une base de données.
+Ceci n'étant pas compris dans cette évaluation, ce remplacement ne sera donc pas effectué au sein de ce projet.
+
 ## Eléments manquants ou incomplets
