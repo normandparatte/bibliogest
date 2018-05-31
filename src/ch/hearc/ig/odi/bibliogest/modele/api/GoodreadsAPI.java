@@ -66,8 +66,6 @@ public class GoodreadsAPI {
 
     JSONObject auteurJSON = (JSONObject) xmlJSONObj.getJSONObject("book").getJSONObject("authors").getJSONArray("author").get(0);
 
-    System.out.println(auteurJSON.getString("name"));
-
     String auteurID = String.valueOf(auteurJSON.getInt("id"));
     String auteurName = auteurJSON.getString("name");
     String auteurImage = auteurJSON.getJSONObject("image_url").getString("content");
