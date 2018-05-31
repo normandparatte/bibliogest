@@ -19,14 +19,14 @@ public class Book {
   private String description;
   private String isbn10;
   private String isbn13;
-  private String image_url;
-  private Date publication_date;
+  private String imageUrl;
+  private Date publicationDate;
   private String publisher;
-  private Integer ratings_count;
-  private Integer ratings_sum;
-  private Double average_rating;
+  private Integer ratingsCount;
+  private Integer ratingsSum;
+  private Double averageRating;
   private Author author;
-  private Review personal_review;
+  private Review personalReview;
 
   // -----------------------------------------------------------------------------------------------
   // ----- CONSTRUCTEURS ---------------------------------------------------------------------------
@@ -50,31 +50,31 @@ public class Book {
    * @param description Description
    * @param isbn10 ISBN sur 10 caractères
    * @param isbn13 ISBN sur 13 caractères
-   * @param image_url URL de l'image de la couverture du livre
-   * @param publication_date Date de publication
+   * @param imageUrl URL de l'image de la couverture du livre
+   * @param publicationDate Date de publication
    * @param publisher Editeur
-   * @param ratings_count Nombre d'avis sur le livre
-   * @param ratings_sum Somme de toutes les évaluations
+   * @param ratingsCount Nombre d'avis sur le livre
+   * @param ratingsSum Somme de toutes les évaluations
    * @param author Auteur
-   * @param personal_review Avis personnel du livre
+   * @param personalReview Avis personnel du livre
    */
   public Book(String id, String title, String description, String isbn10, String isbn13,
-      String image_url, Date publication_date, String publisher, Integer ratings_count,
-      Integer ratings_sum, Author author, Review personal_review) {
+      String imageUrl, Date publicationDate, String publisher, Integer ratingsCount,
+      Integer ratingsSum, Author author, Review personalReview) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.isbn10 = isbn10;
     this.isbn13 = isbn13;
-    this.image_url = image_url;
-    this.publication_date = publication_date;
+    this.imageUrl = imageUrl;
+    this.publicationDate = publicationDate;
     this.publisher = publisher;
-    this.ratings_count = ratings_count;
-    this.ratings_sum = ratings_sum;
+    this.ratingsCount = ratingsCount;
+    this.ratingsSum = ratingsSum;
     this.author = author;
 
     //Calcul de la moyenne
-    average_rating = calculateRatingsAverage();
+    averageRating = calculateRatingsAverage();
   }
 
   /**
@@ -84,36 +84,36 @@ public class Book {
    * @param description Description
    * @param isbn10 ISBN sur 10 caractères
    * @param isbn13 ISBN sur 13 caractères
-   * @param image_url URL de l'image de la couverture du livre
-   * @param publication_date Date de publication
+   * @param imageUrl URL de l'image de la couverture du livre
+   * @param publicationDate Date de publication
    * @param publisher Editeur
-   * @param ratings_count Nombre d'avis sur le livre
-   * @param ratings_sum Somme de toutes les évaluations
+   * @param ratingsCount Nombre d'avis sur le livre
+   * @param ratingsSum Somme de toutes les évaluations
    * @param author Auteur
    */
   public Book(String id, String title, String description, String isbn10, String isbn13,
-      String image_url, Date publication_date, String publisher, Integer ratings_count,
-      Integer ratings_sum, Author author) {
+      String imageUrl, Date publicationDate, String publisher, Integer ratingsCount,
+      Integer ratingsSum, Author author) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.isbn10 = isbn10;
     this.isbn13 = isbn13;
-    this.image_url = image_url;
-    this.publication_date = publication_date;
+    this.imageUrl = imageUrl;
+    this.publicationDate = publicationDate;
     this.publisher = publisher;
-    this.ratings_count = ratings_count;
-    this.ratings_sum = ratings_sum;
+    this.ratingsCount = ratingsCount;
+    this.ratingsSum = ratingsSum;
     this.author = author;
 
     //Calcul de la moyenne
-    average_rating = calculateRatingsAverage();
+    averageRating = calculateRatingsAverage();
   }
 // -----------------------------------------------------------------------------------------------
   // ----- FONCTIONS METIERS -----------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
   private Double calculateRatingsAverage(){
-    return Double.valueOf(ratings_sum) / Double.valueOf(ratings_count);
+    return Double.valueOf(ratingsSum) / Double.valueOf(ratingsCount);
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -159,20 +159,20 @@ public class Book {
     this.isbn13 = isbn13;
   }
 
-  public String getImage_url() {
-    return image_url;
+  public String getImageUrl() {
+    return imageUrl;
   }
 
-  public void setImage_url(String image_url) {
-    this.image_url = image_url;
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 
-  public Date getPublication_date() {
-    return publication_date;
+  public Date getPublicationDate() {
+    return publicationDate;
   }
 
-  public void setPublication_date(Date publication_date) {
-    this.publication_date = publication_date;
+  public void setPublicationDate(Date publicationDate) {
+    this.publicationDate = publicationDate;
   }
 
   public String getPublisher() {
@@ -183,26 +183,26 @@ public class Book {
     this.publisher = publisher;
   }
 
-  public Integer getRatings_count() {
-    return ratings_count;
+  public Integer getRatingsCount() {
+    return ratingsCount;
   }
 
-  public void setRatings_count(Integer ratings_count) {
-    this.ratings_count = ratings_count;
+  public void setRatingsCount(Integer ratingsCount) {
+    this.ratingsCount = ratingsCount;
 
     //Recalcul de la moyenne
-    average_rating = calculateRatingsAverage();
+    averageRating = calculateRatingsAverage();
   }
 
-  public Integer getRatings_sum() {
-    return ratings_sum;
+  public Integer getRatingsSum() {
+    return ratingsSum;
   }
 
-  public void setRatings_sum(Integer ratings_sum) {
-    this.ratings_sum = ratings_sum;
+  public void setRatingsSum(Integer ratingsSum) {
+    this.ratingsSum = ratingsSum;
 
     //Recalcul de la moyenne
-    average_rating = calculateRatingsAverage();
+    averageRating = calculateRatingsAverage();
   }
 
   public Author getAuthor() {
@@ -213,20 +213,16 @@ public class Book {
     this.author = author;
   }
 
-  public Double getAverage_rating() {
-    return average_rating;
+  public Double getAverageRating() {
+    return averageRating;
   }
 
-  public void setAverage_rating(Double average_rating) {
-    this.average_rating = average_rating;
+  public Review getPersonalReview() {
+    return personalReview;
   }
 
-  public Review getPersonal_review() {
-    return personal_review;
-  }
-
-  public void setPersonal_review(Review personal_review) {
-    this.personal_review = personal_review;
+  public void setPersonalReview(Review personalReview) {
+    this.personalReview = personalReview;
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -240,14 +236,14 @@ public class Book {
         ", description='" + description + '\'' +
         ", isbn10='" + isbn10 + '\'' +
         ", isbn13='" + isbn13 + '\'' +
-        ", image_url='" + image_url + '\'' +
-        ", publication_date=" + publication_date +
+        ", imageUrl='" + imageUrl + '\'' +
+        ", publicationDate=" + publicationDate +
         ", publisher='" + publisher + '\'' +
-        ", ratings_count=" + ratings_count +
-        ", ratings_sum=" + ratings_sum +
-        ", average_rating=" + average_rating +
+        ", ratingsCount=" + ratingsCount +
+        ", ratingsSum=" + ratingsSum +
+        ", averageRating=" + averageRating +
         ", author=" + author +
-        ", personal_review=" + personal_review +
+        ", personalReview=" + personalReview +
         '}';
   }
 }

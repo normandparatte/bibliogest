@@ -14,9 +14,9 @@ public class Author {
   // -----------------------------------------------------------------------------------------------
   private String id;
   private String name;
-  private String image_url;
-  private String ratings_count;
-  private String average_rating;
+  private String imageUrl;
+  private String ratingsCount;
+  private String averageRating;
 
   // -----------------------------------------------------------------------------------------------
   // ----- CONSTRUCTEURS ---------------------------------------------------------------------------
@@ -25,17 +25,17 @@ public class Author {
    * Constructeur complet d'un auteur
    * @param id
    * @param name
-   * @param image_url
-   * @param ratings_count
-   * @param average_rating
+   * @param imageUrl
+   * @param ratingsCount
+   * @param averageRating
    */
-  public Author(String id, String name, String image_url, String ratings_count,
-      String average_rating) {
+  public Author(String id, String name, String imageUrl, String ratingsCount,
+      String averageRating) {
     this.id = id;
     this.name = name;
-    this.image_url = image_url;
-    this.ratings_count = ratings_count;
-    this.average_rating = average_rating;
+    this.imageUrl = imageUrl;
+    this.ratingsCount = ratingsCount;
+    this.averageRating = averageRating;
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -62,27 +62,27 @@ public class Author {
   }
 
   public String getImage_url() {
-    return image_url;
+    return imageUrl;
   }
 
   public void setImage_url(String image_url) {
-    this.image_url = image_url;
+    this.imageUrl = image_url;
   }
 
   public String getRatings_count() {
-    return ratings_count;
+    return ratingsCount;
   }
 
   public void setRatings_count(String ratings_count) {
-    this.ratings_count = ratings_count;
+    this.ratingsCount = ratings_count;
   }
 
   public String getAverage_rating() {
-    return average_rating;
+    return averageRating;
   }
 
   public void setAverage_rating(String average_rating) {
-    this.average_rating = average_rating;
+    this.averageRating = average_rating;
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -93,9 +93,9 @@ public class Author {
     return "Author{" +
         "id='" + id + '\'' +
         ", name='" + name + '\'' +
-        ", image_url='" + image_url + '\'' +
-        ", ratings_count='" + ratings_count + '\'' +
-        ", average_rating='" + average_rating + '\'' +
+        ", image_url='" + imageUrl + '\'' +
+        ", ratings_count='" + ratingsCount + '\'' +
+        ", average_rating='" + averageRating + '\'' +
         '}';
   }
 }
