@@ -10,7 +10,7 @@
 
 Création d'une application permettant de gérer une bibliothèque de livres.
 
-L'application va rechercher les informations d'un livre dans l'API Goodreads (https://www.goodreads.com/api) et permet de se créer une bibliothèque personnelle.
+L'application va rechercher les informations d'un livre dans l'API Goodreads (https://www.goodreads.com/ch.hearc.ig.odi.bibliogest.api) et permet de se créer une bibliothèque personnelle.
 
 Cette bibliothèque permet d'afficher diverses informations sur des livres et d'y ajouter une note et un commentaire personnels.
 
