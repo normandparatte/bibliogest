@@ -112,10 +112,24 @@ public class Book {
 // -----------------------------------------------------------------------------------------------
   // ----- FONCTIONS METIERS -----------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
+  /**
+   * Calcul la moyenne des notes selon le nombre et la somme des ratings
+   *
+   * @return Moyenne des notes
+   */
   private Double calculateRatingsAverage(){
     return Double.valueOf(ratingsSum) / Double.valueOf(ratingsCount);
   }
 
+  /**
+   * Créer et ajoute une review au livre
+   *
+   * @return Moyenne des notes
+   */
+  public Review addReview(String description, Integer rating){
+    personalReview=new Review(description,rating);
+    return personalReview;
+  }
   // -----------------------------------------------------------------------------------------------
   // ----- GETTERS & SETTERS -----------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
