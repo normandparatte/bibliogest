@@ -23,6 +23,14 @@ public class Author {
   // -----------------------------------------------------------------------------------------------
   // ----- CONSTRUCTEURS ---------------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
+  /**
+   * Constructeur complet d'un autheur
+   * @param id
+   * @param name
+   * @param image_url
+   * @param ratings_count
+   * @param average_rating
+   */
   public Author(String id, String name, String image_url, String ratings_count,
       String average_rating) {
     this.id = id;
