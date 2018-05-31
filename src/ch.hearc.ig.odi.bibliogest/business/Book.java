@@ -26,6 +26,7 @@ public class Book {
   private Integer ratings_sum;
   private Double average_rating;
   private Author author;
+  private Review personal_review;
 
   // -----------------------------------------------------------------------------------------------
   // ----- CONSTRUCTEURS ---------------------------------------------------------------------------
@@ -47,14 +48,48 @@ public class Book {
    * @param id Numéro identifiant
    * @param title Titre
    * @param description Description
-   * @param isbn10
-   * @param isbn13
-   * @param image_url
-   * @param publication_date
-   * @param publisher
-   * @param ratings_count
-   * @param ratings_sum
-   * @param author
+   * @param isbn10 ISBN sur 10 caractères
+   * @param isbn13 ISBN sur 13 caractères
+   * @param image_url URL de l'image de la couverture du livre
+   * @param publication_date Date de publication
+   * @param publisher Editeur
+   * @param ratings_count Nombre d'avis sur le livre
+   * @param ratings_sum Somme de toutes les évaluations
+   * @param author Auteur
+   * @param personal_review Avis personnel du livre
+   */
+  public Book(String id, String title, String description, String isbn10, String isbn13,
+      String image_url, Date publication_date, String publisher, Integer ratings_count,
+      Integer ratings_sum, Author author, Review personal_review) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.isbn10 = isbn10;
+    this.isbn13 = isbn13;
+    this.image_url = image_url;
+    this.publication_date = publication_date;
+    this.publisher = publisher;
+    this.ratings_count = ratings_count;
+    this.ratings_sum = ratings_sum;
+    this.author = author;
+
+    //Calcul de la moyenne
+    average_rating = calculateRatingsAverage();
+  }
+
+  /**
+   * Constructeur d'un livre sans l'avis personnel
+   * @param id Numéro identifiant
+   * @param title Titre
+   * @param description Description
+   * @param isbn10 ISBN sur 10 caractères
+   * @param isbn13 ISBN sur 13 caractères
+   * @param image_url URL de l'image de la couverture du livre
+   * @param publication_date Date de publication
+   * @param publisher Editeur
+   * @param ratings_count Nombre d'avis sur le livre
+   * @param ratings_sum Somme de toutes les évaluations
+   * @param author Auteur
    */
   public Book(String id, String title, String description, String isbn10, String isbn13,
       String image_url, Date publication_date, String publisher, Integer ratings_count,
@@ -72,11 +107,14 @@ public class Book {
     this.author = author;
 
     //Calcul de la moyenne
-    average_rating = Double.valueOf(ratings_sum) / Double.valueOf(ratings_count);
+    average_rating = calculateRatingsAverage();
   }
 // -----------------------------------------------------------------------------------------------
   // ----- FONCTIONS METIERS -----------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
+  private Double calculateRatingsAverage(){
+    return Double.valueOf(ratings_sum) / Double.valueOf(ratings_count);
+  }
 
   // -----------------------------------------------------------------------------------------------
   // ----- GETTERS & SETTERS -----------------------------------------------------------------------
@@ -153,7 +191,7 @@ public class Book {
     this.ratings_count = ratings_count;
 
     //Recalcul de la moyenne
-    average_rating = Double.valueOf(ratings_sum) / Double.valueOf(ratings_count);
+    average_rating = calculateRatingsAverage();
   }
 
   public Integer getRatings_sum() {
@@ -164,7 +202,7 @@ public class Book {
     this.ratings_sum = ratings_sum;
 
     //Recalcul de la moyenne
-    average_rating = Double.valueOf(ratings_sum) / Double.valueOf(ratings_count);
+    average_rating = calculateRatingsAverage();
   }
 
   public Author getAuthor() {
@@ -173,6 +211,22 @@ public class Book {
 
   public void setAuthor(Author author) {
     this.author = author;
+  }
+
+  public Double getAverage_rating() {
+    return average_rating;
+  }
+
+  public void setAverage_rating(Double average_rating) {
+    this.average_rating = average_rating;
+  }
+
+  public Review getPersonal_review() {
+    return personal_review;
+  }
+
+  public void setPersonal_review(Review personal_review) {
+    this.personal_review = personal_review;
   }
 
   // -----------------------------------------------------------------------------------------------
@@ -193,6 +247,7 @@ public class Book {
         ", ratings_sum=" + ratings_sum +
         ", average_rating=" + average_rating +
         ", author=" + author +
+        ", personal_review=" + personal_review +
         '}';
   }
 }
