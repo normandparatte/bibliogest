@@ -6,7 +6,7 @@
  * Date : 31.05.18 11:26
  */
 
-package ch.hearc.ig.odi.bibliogest.business;
+package ch.hearc.ig.odi.bibliogest.modele.business;
 
 import java.util.ArrayList;
 import java.util.List;

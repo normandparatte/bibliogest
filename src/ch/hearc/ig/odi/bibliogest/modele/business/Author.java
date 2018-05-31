@@ -6,7 +6,7 @@
  * Date : 30.05.18 21:09
  */
 
-package ch.hearc.ig.odi.bibliogest.business;
+package ch.hearc.ig.odi.bibliogest.modele.business;
 
 public class Author {
   // -----------------------------------------------------------------------------------------------

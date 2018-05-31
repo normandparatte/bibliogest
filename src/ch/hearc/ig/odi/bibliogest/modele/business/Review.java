@@ -6,7 +6,7 @@
  * Date : 31.05.18 10:55
  */
 
-package ch.hearc.ig.odi.bibliogest.business;
+package ch.hearc.ig.odi.bibliogest.modele.business;
 
 public class Review {
   // -----------------------------------------------------------------------------------------------

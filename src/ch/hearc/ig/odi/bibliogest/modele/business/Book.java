@@ -6,7 +6,7 @@
  * Date : 30.05.18 20:59
  */
 
-package ch.hearc.ig.odi.bibliogest.business;
+package ch.hearc.ig.odi.bibliogest.modele.business;
 
 import java.util.Date;
 
