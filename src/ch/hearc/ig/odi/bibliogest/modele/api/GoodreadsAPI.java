@@ -20,7 +20,9 @@ public class GoodreadsAPI {
   }
 
   public Book getBookFromISBN(String isbn) {
-
+    // ---------------------------------------------------------------------------------------------
+    // ----- ENVOI DE LA REQUETE A L'API -----------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     Client client = ClientBuilder.newClient();
 
     WebTarget myResource = client.target("https://www.goodreads.com/book/isbn/" + isbn)
@@ -28,6 +30,9 @@ public class GoodreadsAPI {
         // Le format xml est choisi car le format JSON n'est pas propre
         .queryParam("format", "xml");
 
+    // ---------------------------------------------------------------------------------------------
+    // ----- RECUPERATION DES INFORMATIONS ---------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // Le XML recu est transformer en JSON
     JSONObject xmlJSONObj = XML
         .toJSONObject(myResource.request(MediaType.TEXT_PLAIN).get(String.class));
@@ -41,6 +46,7 @@ public class GoodreadsAPI {
     String isbn13 = xmlJSONObj.getJSONObject("book").getString("isbn13");
     String imageUrl = xmlJSONObj.getJSONObject("book").getString("image_url");
 
+    // ----- Gestion de la date --------------------------------------------------------------------
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     String jour="";
     String mois="";
@@ -70,6 +76,7 @@ public class GoodreadsAPI {
     } catch (ParseException e) {
       e.printStackTrace();
     }
+    // ---------------------------------------------------------------------------------------------
 
     String publisher = xmlJSONObj.getJSONObject("book").getString("publisher");
     Integer ratingsCount = xmlJSONObj.getJSONObject("book").getJSONObject("work")
@@ -93,6 +100,17 @@ public class GoodreadsAPI {
     Integer auteurRatingsCount = auteurJSON.getInt("ratings_count");
     Double auteurAverageRating = auteurJSON.getDouble("average_rating");
 
+    // ---------------------------------------------------------------------------------------------
+    // ----- TRADUCTION SI NECESSAIRE --------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    if(!DetectLanguageAPI.detectLanguage(description).toUpperCase().equals("FR")){
+      description = GoogleTranslateAPI.
+         translate(DetectLanguageAPI.detectLanguage(description),"FR",description);
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // ----- CREATION ET RENVOI DES DONNEES --------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // Création de l'auteur
     Author author = new Author(auteurID, auteurName, auteurImage, auteurRatingsCount,
         auteurAverageRating);
