@@ -12,12 +12,13 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import org.json.JSONArray;
 
 public class GoogleTranslateAPI {
   public static String translate(String sourceLanguage, String targetLanguage, String sentence) {
 
+    // Envoi de la requête à l'API
     Client client = ClientBuilder.newClient();
-
     WebTarget myResource = client.target("https://translate.googleapis.com/translate_a/single")
         .queryParam("client", "gtx")
         .queryParam("sl", sourceLanguage)
@@ -25,10 +26,17 @@ public class GoogleTranslateAPI {
         .queryParam("dt", "t")
         .queryParam("q", sentence);
 
-    // On reprend un simple texte que l'on parsera en JSON
-    String retour = myResource.request(MediaType.TEXT_PLAIN).get(String.class);
+    // On reprend le retour dans un tableau JSON
+    JSONArray reponseJSONArray = new JSONArray(myResource.request(MediaType.TEXT_PLAIN).get(String.class));
+    reponseJSONArray = reponseJSONArray.getJSONArray(0);
 
-    // Retourne le premier texte entre guillemets
-    return retour.split("\"")[1];
+    // Parcours le tableau et reprends les phrases traduites dans retour
+    String retour="";
+    for(int i=0;i<reponseJSONArray.length();++i){
+      retour+=reponseJSONArray.getJSONArray(i).getString(0);
+    }
+
+    // Retourne la phrase traduite
+    return retour;
   }
 }
