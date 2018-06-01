@@ -4,7 +4,9 @@ import ch.hearc.ig.odi.bibliogest.modele.business.Author;
 import ch.hearc.ig.odi.bibliogest.modele.business.Book;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -16,58 +18,126 @@ public class GoodreadsAPI {
 
   private static final String APIKEY = "5e46FPUdlqxlRMLu9I7sw";
 
-  public GoodreadsAPI() {
-  }
-
-  public Book getBookFromISBN(String isbn) {
-    // ---------------------------------------------------------------------------------------------
-    // ----- ENVOI DE LA REQUETE A L'API -----------------------------------------------------------
-    // ---------------------------------------------------------------------------------------------
+  public static Book getBookFromISBN(String isbn) {
+    // Envoi de la requête à l'API
     Client client = ClientBuilder.newClient();
-
     WebTarget myResource = client.target("https://www.goodreads.com/book/isbn/" + isbn)
         .queryParam("key", APIKEY)
         // Le format xml est choisi car le format JSON n'est pas propre
         .queryParam("format", "xml");
 
-    // ---------------------------------------------------------------------------------------------
-    // ----- RECUPERATION DES INFORMATIONS ---------------------------------------------------------
-    // ---------------------------------------------------------------------------------------------
     // Le XML recu est transformer en JSON
     JSONObject xmlJSONObj = XML
         .toJSONObject(myResource.request(MediaType.TEXT_PLAIN).get(String.class));
-    xmlJSONObj = xmlJSONObj.getJSONObject("GoodreadsResponse");
+    xmlJSONObj = xmlJSONObj.getJSONObject("GoodreadsResponse").getJSONObject("book");
 
-    // Initialisation de toutes les variables selon objet recu
-    String id = String.valueOf(xmlJSONObj.getJSONObject("book").getInt("id"));
-    String title = xmlJSONObj.getJSONObject("book").getString("title");
-    String description = xmlJSONObj.getJSONObject("book").getString("description");
-    String isbn10 = xmlJSONObj.getJSONObject("book").getString("isbn");
-    String isbn13 = xmlJSONObj.getJSONObject("book").getString("isbn13");
-    String imageUrl = xmlJSONObj.getJSONObject("book").getString("image_url");
+    client.close();
+
+    //Retourne le livre
+    return extractBookInformations(xmlJSONObj);
+  }
+
+
+  public static List<Book> getSimilarBooks(String isbn) {
+    // Envoi de la requête à l'API
+    Client client = ClientBuilder.newClient();
+    WebTarget myResource = client.target("https://www.goodreads.com/book/isbn/" + isbn)
+        .queryParam("key", APIKEY)
+        // Le format xml est choisi car le format JSON n'est pas propre
+        .queryParam("format", "xml");
+
+    // Le XML recu est transformer en JSON
+    JSONObject xmlJSONObj = XML
+        .toJSONObject(myResource.request(MediaType.TEXT_PLAIN).get(String.class));
+    xmlJSONObj = xmlJSONObj.getJSONObject("GoodreadsResponse").getJSONObject("book")
+        .getJSONObject("similar_books");
+
+    client.close();
+
+    // Parcours le tableau JSON des livres similaires et les ajoute à la liste
+    List<Book> books = new ArrayList<>();
+
+    //On limite le nombre de livre similaire à 5
+    Integer numberSimilarbooks=xmlJSONObj.getJSONArray("book").length();
+    if(numberSimilarbooks>5){
+      numberSimilarbooks=5;
+    }
+
+    for (int i = 0; i < numberSimilarbooks; ++i) {
+      // Récupère l'ISBN en string mais parfois l'API le retourne sous un int
+      String isbnSimilarBook;
+      try {
+        isbnSimilarBook = xmlJSONObj.getJSONArray("book").getJSONObject(i).getString("isbn");
+      } catch (Exception e) {
+        isbnSimilarBook = String
+            .valueOf(xmlJSONObj.getJSONArray("book").getJSONObject(i).getInt("isbn"));
+      }
+      try {
+        // Récupère le livre selon l'ISBN sinon on a pas toutes les informations necessaires
+        books.add(getBookFromISBN(isbnSimilarBook));
+      }catch (Exception e){
+      }
+    }
+
+    client.close();
+
+    //Retourne la liste de livres
+    return books;
+  }
+
+  private static String traductInFrench(String sentence) {
+    // ---------------------------------------------------------------------------------------------
+    // ----- TRADUCTION SI NECESSAIRE --------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    if(sentence.length()>0){
+      if (!DetectLanguageAPI.detectLanguage(sentence).toUpperCase().equals("FR")) {
+        return GoogleTranslateAPI.
+            translate(DetectLanguageAPI.detectLanguage(sentence), "FR", sentence);
+      }
+      return sentence;
+    }
+    return "";
+  }
+
+  private static Book extractBookInformations(JSONObject BookJSON) {
+    // ---------------------------------------------------------------------------------------------
+    // ----- RECUPERATION DES INFORMATIONS ---------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    String id = String.valueOf(BookJSON.getInt("id"));
+    String title = BookJSON.getString("title");
+    String description = BookJSON.getString("description");
+    description = traductInFrench(description);
+    String isbn10 = BookJSON.getString("isbn");
+    String isbn13 = BookJSON.getString("isbn13");
+    String imageUrl = BookJSON.getString("image_url");
+    String publisher = BookJSON.getString("publisher");
+    Integer ratingsCount = BookJSON.getJSONObject("work")
+        .getJSONObject("ratings_count").getInt("content");
+    Integer ratingsSum = BookJSON.getJSONObject("work")
+        .getJSONObject("ratings_sum").getInt("content");
 
     // ----- Gestion de la date --------------------------------------------------------------------
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    String jour="";
-    String mois="";
-    String annee="";
-    try{
-      jour=String.valueOf(xmlJSONObj.getJSONObject("book").getJSONObject("work")
+    String jour = "";
+    String mois = "";
+    String annee = "";
+    try {
+      jour = String.valueOf(BookJSON.getJSONObject("work")
           .getJSONObject("original_publication_day").getInt("content"));
-    }catch(Exception e){
-      jour="01";
+    } catch (Exception e) {
+      jour = "01";
     }
-    try{
-      mois=String.valueOf(xmlJSONObj.getJSONObject("book").getJSONObject("work")
+    try {
+      mois = String.valueOf(BookJSON.getJSONObject("work")
           .getJSONObject("original_publication_month").getInt("content"));
-    }catch(Exception e){
-      mois="01";
+    } catch (Exception e) {
+      mois = "01";
     }
-    try{
-      annee=String.valueOf(xmlJSONObj.getJSONObject("book").getJSONObject("work")
+    try {
+      annee = String.valueOf(BookJSON.getJSONObject("work")
           .getJSONObject("original_publication_year").getInt("content"));
-    }catch(Exception e){
-      annee="2000";
+    } catch (Exception e) {
+      annee = "2000";
     }
     String date = jour + "/" + mois + "/" + annee;
     Date publication = null;
@@ -76,22 +146,32 @@ public class GoodreadsAPI {
     } catch (ParseException e) {
       e.printStackTrace();
     }
+
     // ---------------------------------------------------------------------------------------------
+    // ----- CREATION ET RENVOI DES DONNEES --------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    // Création de l'auteur
+    Author author = extractAuthorInformations(BookJSON);
 
-    String publisher = xmlJSONObj.getJSONObject("book").getString("publisher");
-    Integer ratingsCount = xmlJSONObj.getJSONObject("book").getJSONObject("work")
-        .getJSONObject("ratings_count").getInt("content");
-    Integer ratingsSum = xmlJSONObj.getJSONObject("book").getJSONObject("work")
-        .getJSONObject("ratings_sum").getInt("content");
+    // Création du livre
+    Book book = new Book(id, title, description, isbn10, isbn13, imageUrl, publication, publisher,
+        ratingsCount, ratingsSum, author);
 
+    return book;
+  }
+
+  private static Author extractAuthorInformations(JSONObject AuthorJSON) {
+    // ---------------------------------------------------------------------------------------------
+    // ----- RECUPERATION DES INFORMATIONS ---------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     JSONObject auteurJSON;
     try {
       // S'il y a plusieurs auteurs c'est un tableau
-      auteurJSON = (JSONObject) xmlJSONObj.getJSONObject("book").getJSONObject("authors")
+      auteurJSON = (JSONObject) AuthorJSON.getJSONObject("authors")
           .getJSONArray("author").get(0);
-    } catch(Exception e){
+    } catch (Exception e) {
       // Sinon c'est un objet
-      auteurJSON = (JSONObject) xmlJSONObj.getJSONObject("book").getJSONObject("authors")
+      auteurJSON = (JSONObject) AuthorJSON.getJSONObject("authors")
           .getJSONObject("author");
     }
     String auteurID = String.valueOf(auteurJSON.getInt("id"));
@@ -101,25 +181,12 @@ public class GoodreadsAPI {
     Double auteurAverageRating = auteurJSON.getDouble("average_rating");
 
     // ---------------------------------------------------------------------------------------------
-    // ----- TRADUCTION SI NECESSAIRE --------------------------------------------------------------
-    // ---------------------------------------------------------------------------------------------
-    if(!DetectLanguageAPI.detectLanguage(description).toUpperCase().equals("FR")){
-      description = GoogleTranslateAPI.
-         translate(DetectLanguageAPI.detectLanguage(description),"FR",description);
-    }
-
-    // ---------------------------------------------------------------------------------------------
     // ----- CREATION ET RENVOI DES DONNEES --------------------------------------------------------
     // ---------------------------------------------------------------------------------------------
     // Création de l'auteur
     Author author = new Author(auteurID, auteurName, auteurImage, auteurRatingsCount,
         auteurAverageRating);
 
-    // Création du livre
-    Book book = new Book(id, title, description, isbn10, isbn13, imageUrl, publication, publisher,
-        ratingsCount, ratingsSum, author);
-
-    //Retourne le titre
-    return book;
+    return author;
   }
 }

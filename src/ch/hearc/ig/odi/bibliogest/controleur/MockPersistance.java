@@ -22,22 +22,20 @@ public class MockPersistance {
   private static List<Author> authors;
   private static Bookcase library;
   private static Bookcase wishlist;
-  private static GoodreadsAPI goodreadsAPI;
 
   public static void init() {
     books = new ArrayList<>();
     authors = new ArrayList<>();
     library = new Bookcase();
     wishlist = new Bookcase();
-    goodreadsAPI = new GoodreadsAPI();
     generateMockData();
   }
 
   private static void generateMockData() {
-    Book b1 = goodreadsAPI.getBookFromISBN("2070584623"); // Harry potter #1
-    Book b2 = goodreadsAPI.getBookFromISBN("207058464X"); // Harry potter #2
-    Book b3 = goodreadsAPI.getBookFromISBN("2070584925"); // Harry potter #3
-    Book b4 = goodreadsAPI.getBookFromISBN("2747014401"); // Eragon #1
+    Book b1 = GoodreadsAPI.getBookFromISBN("2070584623"); // Harry potter #1
+    Book b2 = GoodreadsAPI.getBookFromISBN("207058464X"); // Harry potter #2
+    Book b3 = GoodreadsAPI.getBookFromISBN("2070584925"); // Harry potter #3
+    Book b4 = GoodreadsAPI.getBookFromISBN("2747014401"); // Eragon #1
 
     addBookToLibrary(b1);
     addBookToLibrary(b2);
