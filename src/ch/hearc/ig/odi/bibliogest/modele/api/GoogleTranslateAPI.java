@@ -31,6 +31,4 @@ public class GoogleTranslateAPI {
     // Retourne le premier texte entre guillemets
     return retour.split("\"")[1];
   }
-
-
 }
