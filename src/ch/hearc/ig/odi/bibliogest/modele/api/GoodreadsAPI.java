@@ -23,7 +23,6 @@ public class GoodreadsAPI {
 
     Client client = ClientBuilder.newClient();
 
-    // ISBN pour harry potter --> 2070518426
     WebTarget myResource = client.target("https://www.goodreads.com/book/isbn/" + isbn)
         .queryParam("key", APIKEY)
         // Le format xml est choisi car le format JSON n'est pas propre
