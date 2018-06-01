@@ -10,6 +10,7 @@ package ch.hearc.ig.odi.bibliogest.modele.business;
 
 import ch.hearc.ig.odi.bibliogest.controleur.MockPersistance;
 import ch.hearc.ig.odi.bibliogest.modele.api.DetectLanguageAPI;
+import ch.hearc.ig.odi.bibliogest.modele.api.GoodreadsAPI;
 import ch.hearc.ig.odi.bibliogest.modele.api.GoogleTranslateAPI;
 
 public class Main {
@@ -18,5 +19,8 @@ public class Main {
 
     System.out.println("Bibliothèque :"+MockPersistance.getLibrary());
     System.out.println("Liste d'envies :"+MockPersistance.getWishlist());
+
+    System.out.println(GoodreadsAPI.getSimilarBooks(MockPersistance.getLibrary().getBookcase().get(0).getIsbn10()));
+
   }
 }
