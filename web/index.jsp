@@ -3,7 +3,7 @@
 <title>BiblioGest | Accueil</title>
 <%@include file="includes/navbar.jsp"%>
 
-<div class="container" style="margin-top: 75px">
+<div class="container">
     <h1 class="my-4">BiblioGest
         <small>Accueil</small>
     </h1>
@@ -35,17 +35,6 @@
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#">Rechercher un livre</a>
-                    </h4>
-                </div>
-            </div>
-            </a>
-        </div>
-        <div class="col-3 portfolio-item">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/booklet-256.png" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Découvrir</a>
                     </h4>
                 </div>
             </div>
