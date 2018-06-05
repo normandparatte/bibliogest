@@ -95,26 +95,6 @@ public class GoodreadsAPI {
   }
 
   /**
-   * Traduit un texte en francais
-   * @param sentence Texte à traduire en français
-   * @return Texte en français
-   */
-  //TODO Refactoring en déplaçant cette méthode dans l'API detectLanguage
-  private static String traductInFrench(String sentence) {
-    // ---------------------------------------------------------------------------------------------
-    // ----- TRADUCTION SI NECESSAIRE --------------------------------------------------------------
-    // ---------------------------------------------------------------------------------------------
-    if(sentence.length()>0){
-      if (!DetectLanguageAPI.detectLanguage(sentence).toUpperCase().equals("FR")) {
-        return GoogleTranslateAPI.
-            translate(DetectLanguageAPI.detectLanguage(sentence), "FR", sentence);
-      }
-      return sentence;
-    }
-    return "";
-  }
-
-  /**
    * Extrait les informations d'un JSON et les injecte dans un livre
    * @param BookJSON Livre au format JSON
    * @return Livre créé selon les informations du JSON
@@ -126,7 +106,7 @@ public class GoodreadsAPI {
     String id = String.valueOf(BookJSON.getInt("id"));
     String title = BookJSON.getString("title");
     String description = BookJSON.getString("description");
-    description = traductInFrench(description);
+    description = DetectLanguageAPI.traductInFrench(description);
     String isbn10 = BookJSON.getString("isbn");
     String isbn13 = BookJSON.getString("isbn13");
     String imageUrl = BookJSON.getString("image_url");
