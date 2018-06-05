@@ -40,4 +40,23 @@ public class DetectLanguageAPI {
 
     return language;
   }
+
+  /**
+   * Traduit un texte en francais
+   * @param sentence Texte à traduire en français
+   * @return Texte en français
+   */
+  public static String traductInFrench(String sentence) {
+    // ---------------------------------------------------------------------------------------------
+    // ----- TRADUCTION SI NECESSAIRE --------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    if(sentence.length()>0){
+      if (!DetectLanguageAPI.detectLanguage(sentence).toUpperCase().equals("FR")) {
+        return GoogleTranslateAPI.
+            translate(DetectLanguageAPI.detectLanguage(sentence), "FR", sentence);
+      }
+      return sentence;
+    }
+    return "";
+  }
 }
