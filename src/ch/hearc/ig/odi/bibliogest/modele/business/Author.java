@@ -8,6 +8,8 @@
 
 package ch.hearc.ig.odi.bibliogest.modele.business;
 
+import java.util.Objects;
+
 public class Author {
   // -----------------------------------------------------------------------------------------------
   // ----- PROPRIETES ------------------------------------------------------------------------------
@@ -88,6 +90,28 @@ public class Author {
   // -----------------------------------------------------------------------------------------------
   // ----- FONCTIONS UTILES ------------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Author author = (Author) o;
+    return Objects.equals(id, author.id) &&
+        Objects.equals(name, author.name) &&
+        Objects.equals(imageUrl, author.imageUrl) &&
+        Objects.equals(ratingsCount, author.ratingsCount) &&
+        Objects.equals(averageRating, author.averageRating);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, imageUrl, ratingsCount, averageRating);
+  }
+
   @Override
   public String toString() {
     return "Author{" +

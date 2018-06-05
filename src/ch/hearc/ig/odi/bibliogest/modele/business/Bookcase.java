@@ -10,6 +10,7 @@ package ch.hearc.ig.odi.bibliogest.modele.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Bookcase {
   // -----------------------------------------------------------------------------------------------
@@ -95,6 +96,24 @@ public class Bookcase {
   // -----------------------------------------------------------------------------------------------
   // ----- FONCTIONS UTILES ------------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Bookcase bookcase1 = (Bookcase) o;
+    return Objects.equals(bookcase, bookcase1.bookcase);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(bookcase);
+  }
+
   @Override
   public String toString() {
     return "Bookcase{" +

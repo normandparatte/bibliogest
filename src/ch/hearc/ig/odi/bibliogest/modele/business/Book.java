@@ -9,6 +9,7 @@
 package ch.hearc.ig.odi.bibliogest.modele.business;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Book {
   // -----------------------------------------------------------------------------------------------
@@ -242,6 +243,38 @@ public class Book {
   // -----------------------------------------------------------------------------------------------
   // ----- FONCTIONS UTILES ------------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Book book = (Book) o;
+    return Objects.equals(id, book.id) &&
+        Objects.equals(title, book.title) &&
+        Objects.equals(description, book.description) &&
+        Objects.equals(isbn10, book.isbn10) &&
+        Objects.equals(isbn13, book.isbn13) &&
+        Objects.equals(imageUrl, book.imageUrl) &&
+        Objects.equals(publicationDate, book.publicationDate) &&
+        Objects.equals(publisher, book.publisher) &&
+        Objects.equals(ratingsCount, book.ratingsCount) &&
+        Objects.equals(ratingsSum, book.ratingsSum) &&
+        Objects.equals(averageRating, book.averageRating) &&
+        Objects.equals(author, book.author) &&
+        Objects.equals(personalReview, book.personalReview);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects
+        .hash(id, title, description, isbn10, isbn13, imageUrl, publicationDate, publisher,
+            ratingsCount, ratingsSum, averageRating, author, personalReview);
+  }
+
   @Override
   public String toString() {
     return "Book{" +
