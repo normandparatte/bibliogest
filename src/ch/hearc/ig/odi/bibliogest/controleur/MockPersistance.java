@@ -18,11 +18,20 @@ import java.util.Date;
 import java.util.List;
 
 public class MockPersistance {
+  // -----------------------------------------------------------------------------------------------
+  // ----- PROPRIETES ------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------
   private static List<Book> books;
   private static List<Author> authors;
   private static Bookcase library;
   private static Bookcase wishlist;
 
+  // -----------------------------------------------------------------------------------------------
+  // ----- FONCTIONS METIERS -----------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------
+  /**
+   * Initialisation des listes ainsi que leurs données
+   */
   public static void init() {
     books = new ArrayList<>();
     authors = new ArrayList<>();
@@ -31,6 +40,9 @@ public class MockPersistance {
     generateMockData();
   }
 
+  /**
+   * Insertion des données dans les listes
+   */
   private static void generateMockData() {
     Book b1 = GoodreadsAPI.getBookFromISBN("2070584623"); // Harry potter #1
     Book b2 = GoodreadsAPI.getBookFromISBN("207058464X"); // Harry potter #2
@@ -47,21 +59,36 @@ public class MockPersistance {
     b4.addReview("J'adore l'univers et le style de l'écriture",4);
   }
 
+  /**
+   * Ajoute un livre à la librairie
+   * @param book Livre à ajouter
+   */
   public static void addBookToLibrary(Book book){
     library.addBook(book);
     addBook(book);
   }
 
+  /**
+   * Ajoute un livre à la liste de souhait
+   * @param book Livre à ajouter
+   */
   public static void addBookToWhishlist(Book book){
     wishlist.addBook(book);
     addBook(book);
   }
 
+  /**
+   * Ajoute un livre dans la liste des livres et un author dans la liste des auteurs
+   * @param book Livre à ajouter
+   */
   private static void addBook(Book book){
     books.add(book);
     authors.add(book.getAuthor());
   }
 
+  // -----------------------------------------------------------------------------------------------
+  // ----- GETTERS & SETTERS -----------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------
   public static Bookcase getLibrary() {
     return library;
   }

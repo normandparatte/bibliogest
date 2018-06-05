@@ -15,8 +15,15 @@ import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
 
 public class GoogleTranslateAPI {
-  public static String translate(String sourceLanguage, String targetLanguage, String sentence) {
 
+  /**
+   * Traduit un texte
+   * @param sentence Texte à traduire
+   * @param sourceLanguage Language source
+   * @param targetLanguage Language cible
+   * @return Texte traduit
+   */
+  public static String translate(String sourceLanguage, String targetLanguage, String sentence) {
     // Envoi de la requête à l'API
     Client client = ClientBuilder.newClient();
     WebTarget myResource = client.target("https://translate.googleapis.com/translate_a/single")

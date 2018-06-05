@@ -19,6 +19,11 @@ public class DetectLanguageAPI {
 
   private static final String APIKEY = "c177046930ee6a0249548a21067a714a";
 
+  /**
+   * Permet de detecter le language d'un texte
+   * @param sentence Texte sur lequel effectuer la detection de language
+   * @return Langue du texte passé en paramètre
+   */
   public static String detectLanguage(String sentence) {
 
     Client client = ClientBuilder.newClient();
