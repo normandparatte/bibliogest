@@ -13,11 +13,15 @@
                     <a class="nav-link" href="/sp18_projet2_francis_normand_war_exploded/index.jsp">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/sp18_projet2_francis_normand_war_exploded/bibliotheque.jsp">Ma bibliothèque</a>
+                    <a class="nav-link"
+                       href="/sp18_projet2_francis_normand_war_exploded/bibliotheque.jsp">Ma
+                        bibliothèque</a>
                 </li>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un livre (ISBN)" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Rechercher</button>
+                    <input class="form-control mr-sm-2" type="search"
+                           placeholder="Rechercher un livre (ISBN)" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Rechercher
+                    </button>
                 </form>
             </ul>
         </div>
