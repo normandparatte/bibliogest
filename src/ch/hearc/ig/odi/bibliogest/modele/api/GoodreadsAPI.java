@@ -18,6 +18,11 @@ public class GoodreadsAPI {
 
   private static final String APIKEY = "5e46FPUdlqxlRMLu9I7sw";
 
+  /**
+   * Récupère un livre selon son ISBN
+   * @param isbn ISBN du livre à rechercher
+   * @return Livre recherché
+   */
   public static Book getBookFromISBN(String isbn) {
     // Envoi de la requête à l'API
     Client client = ClientBuilder.newClient();
@@ -37,7 +42,11 @@ public class GoodreadsAPI {
     return extractBookInformations(xmlJSONObj);
   }
 
-
+  /**
+   * Récupère des livres similaires au livre passé en paramètre (Via son ISBN)
+   * @param isbn ISBN du livre dont les livres similaires doivent être trouvés
+   * @return Liste des livres similaires
+   */
   public static List<Book> getSimilarBooks(String isbn) {
     // Envoi de la requête à l'API
     Client client = ClientBuilder.newClient();
@@ -85,6 +94,12 @@ public class GoodreadsAPI {
     return books;
   }
 
+  /**
+   * Traduit un texte en francais
+   * @param sentence Texte à traduire en français
+   * @return Texte en français
+   */
+  //TODO Refactoring en déplaçant cette méthode dans l'API detectLanguage
   private static String traductInFrench(String sentence) {
     // ---------------------------------------------------------------------------------------------
     // ----- TRADUCTION SI NECESSAIRE --------------------------------------------------------------
@@ -99,6 +114,11 @@ public class GoodreadsAPI {
     return "";
   }
 
+  /**
+   * Extrait les informations d'un JSON et les injecte dans un livre
+   * @param BookJSON Livre au format JSON
+   * @return Livre créé selon les informations du JSON
+   */
   private static Book extractBookInformations(JSONObject BookJSON) {
     // ---------------------------------------------------------------------------------------------
     // ----- RECUPERATION DES INFORMATIONS ---------------------------------------------------------
@@ -160,6 +180,11 @@ public class GoodreadsAPI {
     return book;
   }
 
+  /**
+   * Extrait les informations d'un JSON et les injecte dans un auteur
+   * @param AuthorJSON Auteur au format JSON
+   * @return Auteur créé selon les informations du JSON
+   */
   private static Author extractAuthorInformations(JSONObject AuthorJSON) {
     // ---------------------------------------------------------------------------------------------
     // ----- RECUPERATION DES INFORMATIONS ---------------------------------------------------------
