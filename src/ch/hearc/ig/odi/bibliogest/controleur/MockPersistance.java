@@ -12,9 +12,7 @@ import ch.hearc.ig.odi.bibliogest.modele.api.GoodreadsAPI;
 import ch.hearc.ig.odi.bibliogest.modele.business.Author;
 import ch.hearc.ig.odi.bibliogest.modele.business.Book;
 import ch.hearc.ig.odi.bibliogest.modele.business.Bookcase;
-import ch.hearc.ig.odi.bibliogest.modele.business.Review;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MockPersistance {

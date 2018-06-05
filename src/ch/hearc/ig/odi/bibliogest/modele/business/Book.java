@@ -8,6 +8,7 @@
 
 package ch.hearc.ig.odi.bibliogest.modele.business;
 
+import ch.hearc.ig.odi.bibliogest.controleur.MockPersistance;
 import java.util.Date;
 import java.util.Objects;
 
@@ -110,6 +111,7 @@ public class Book {
     //Calcul de la moyenne
     averageRating = calculateRatingsAverage();
   }
+
 // -----------------------------------------------------------------------------------------------
   // ----- FONCTIONS METIERS -----------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
@@ -293,4 +295,5 @@ public class Book {
         ", personalReview=" + personalReview +
         '}';
   }
+
 }
