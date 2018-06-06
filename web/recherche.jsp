@@ -7,7 +7,7 @@
 <%
 
     MockPersistance.init();
-    
+
     String isbn = request.getParameter("isbn");
 
     if(MockPersistance.getBookFromISBN(isbn)!=null) {
@@ -38,6 +38,7 @@
             <form method="post">
                 <input type="button" name="addwishlist" value="Ajouter à la wishlist" id="addwishlist" class="btn btn-warning btn-sm btn-block" onclick="<%addBookToWhishlist(book);%>">
                 <input type="button" name="addlibrary" value="Ajouter à la bibliothèque" id="addlibrary" class="btn btn-success btn-sm btn-block" onclick="<%addBookToLibrary(book);%>">
+            </form>
             <p class="card-text"><%=book.getDescription()%></p>
         </div>
 
