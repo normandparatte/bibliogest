@@ -38,6 +38,8 @@ public class DetectLanguageAPI {
       language="INCONNU";
     }
 
+    client.close();
+
     return language;
   }
 
