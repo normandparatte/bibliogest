@@ -64,4 +64,9 @@ Afin de gérer la persistance des données, des mocks de persistances ont été 
 A noter que dans le futur, cette gestion via des mocks devrait être remplacée par un autre moyen de persistance tel qu'une base de données.
 Ceci n'étant pas compris dans cette évaluation, ce remplacement ne sera donc pas effectué au sein de ce projet.
 
-## Eléments manquants ou incomplets
+### Librairies utilisées
+Voici les librairies que nous avons ajoutées au projet :
+- com.detectlanguage:detectlanguage:1.1.0
+- javax.ws.rs:javax.ws.rs-api:2.1
+- org.glassfish.jersey.core:jersey-client:2.26-b03
+- org.json:json:20180130
