@@ -1,6 +1,7 @@
 <%@ page import="ch.hearc.ig.odi.bibliogest.modele.business.Book" %>
 <%@ page import="static ch.hearc.ig.odi.bibliogest.controleur.MockPersistance.*" %>
 <%@ page import="ch.hearc.ig.odi.bibliogest.controleur.*" %>
+<%@ page import="ch.hearc.ig.odi.bibliogest.modele.business.Review" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -22,9 +23,11 @@
 
         <div class="col-md-4">
             <img class="card-img-top img-fluid" src="<%=book.getImageUrl()%>" alt="">
+            <% if (book.getPersonalReview()!= null){ %>
             <h3>Avis personnel</h3>
             <h5>note : <%=book.getPersonalReview().getRating()%></h5>
             <p class="card-text"><%=book.getPersonalReview().getDescription()%></p>
+            <% } %>
         </div>
 
         <div class="col-md-8">
