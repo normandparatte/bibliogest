@@ -122,7 +122,7 @@ public class MockPersistance {
    * Retire un livre de la bibliothèque
    * @param isbn ISBN du livre à retirer
    */
-  public removeBookFromLibrary(String isbn){
+  public static void removeBookFromLibrary(String isbn){
     for(int i=0;i<library.getBookcase().size();++i){
       if(library.getBookcase().get(i).getIsbn10().equals(isbn)){
         library.getBookcase().remove(i);
@@ -138,7 +138,7 @@ public class MockPersistance {
    * Retire un livre de la liste de souhait
    * @param isbn ISBN du livre à retirer
    */
-  public removeBookFromWishlist(String isbn){
+  public static void removeBookFromWishlist(String isbn){
     for(int i=0;i<wishlist.getBookcase().size();++i){
       if(wishlist.getBookcase().get(i).getIsbn10().equals(isbn)){
         wishlist.getBookcase().remove(i);
