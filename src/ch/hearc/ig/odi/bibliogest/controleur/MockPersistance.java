@@ -84,6 +84,37 @@ public class MockPersistance {
     authors.add(book.getAuthor());
   }
 
+  /**
+   * Determine si un livre est dans la bibliothèque
+   * @param isbn ISBN du livre à chercher dans la bibliothèque
+   * @return True si le livre est présent
+   */
+  public static Boolean bookIsInLibrary(String isbn){
+    for(int i=0;i<library.getBookcase().size();++i){
+      if(library.getBookcase().get(i).getIsbn10().equals(isbn)){
+        return true;
+      }else if (library.getBookcase().get(i).getIsbn13().equals(isbn)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Determine si un livre est dans la liste de souhait
+   * @param isbn ISBN du livre à chercher dans la liste de souhait
+   * @return True si le livre est présent
+   */
+  public static Boolean bookIsInWishlist(String isbn){
+    for(int i=0;i<wishlist.getBookcase().size();++i){
+      if(wishlist.getBookcase().get(i).getIsbn10().equals(isbn)){
+        return true;
+      }else if (wishlist.getBookcase().get(i).getIsbn13().equals(isbn)) {
+        return true;
+      }
+    }
+    return false;
+  }
   // -----------------------------------------------------------------------------------------------
   // ----- GETTERS & SETTERS -----------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
