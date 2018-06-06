@@ -25,13 +25,16 @@ Toutes les sources sont disponibles dans le repository du projet.
 
 ## Outils utilisés
 
-**- IDE :** IntelliJ IDEA (+GlassFish 5.0.0)
+- **IDE** : IntelliJ IDEA (+GlassFish 5.0.0)
 
-**- API ** : Goodreads ()
+- **API** : 
+  - Goodreads (Récupération des informations des livres)
+  - DetectLanguage (Détection de la langue d'un texte)
+  - Google Translate (Traduction d'un texte)
 
-**- VCS** : Git, GitHub
+- **VCS** : Git, GitHub
 
-**- Navigateurs internet** : Google Chrome, Mozilla Firefox
+- **Navigateurs internet** : Google Chrome, Mozilla Firefox
 
 ### Utilisation de Github :
 
