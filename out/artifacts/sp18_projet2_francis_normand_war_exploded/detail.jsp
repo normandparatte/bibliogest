@@ -8,7 +8,6 @@
 <%
     String isbn = request.getParameter("isbn");
     Book book = MockPersistance.getBookFromISBN(isbn);
-    Boolean possede = !bookIsInWishlist(isbn);
 %>
 
 <%@include file="includes/header.jsp" %>
@@ -34,7 +33,7 @@
         <div class="col-md-8">
             <h3 class="my-3"><%=book.getTitle()%> <small><%= book.getAuthor().getName() %></small></h3>
             <h5>Note moyenne : <%=book.getAverageRating()%> <small>(<%=book.getRatingsCount()%>)</small></h5>
-            <% if (!possede){ %>
+            <% if (!bookIsInLibrary(isbn)){ %>
             <button class="btn btn-success btn-sm btn-block" onclick="<%addBookToLibrary(book);%>">Ajouter à la bibliothèque</button>
             <% } %>
             <hr>

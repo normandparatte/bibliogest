@@ -34,12 +34,7 @@
             <h5>Note moyenne : <%=book.getAverageRating()%> <small>(<%=book.getRatingsCount()%>)</small></h5>
             <form method="post">
                 <input type="button" name="addwishlist" value="Ajouter à la wishlist" id="addwishlist" class="btn btn-warning btn-sm btn-block" onclick="<%addBookToWhishlist(book);%>">
-                <input type="button" name="addlibrary" value="Ajouter à la librairie" id="addlibrary" class="btn btn-warning btn-sm btn-block" onclick="<%addBookToWhishlist(book);%>">
-            </form>
-            <!--
-            <button class="btn btn-warning btn-sm btn-block" onclick="<%//addBookToWhishlist(book);%>">Ajouter à la wishlist</button>
-            <button class="btn btn-success btn-sm btn-block" onclick="<%//addBookToLibrary(book);%>">Ajouter à la bibliothèque</button>
-            -->
+                <input type="button" name="addlibrary" value="Ajouter à la librairie" id="addlibrary" class="btn btn-success btn-sm btn-block" onclick="<%addBookToWhishlist(book);%>">
             <p class="card-text"><%=book.getDescription()%></p>
         </div>
 
