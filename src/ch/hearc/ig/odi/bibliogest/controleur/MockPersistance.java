@@ -100,4 +100,15 @@ public class MockPersistance {
   public static void setLibrary(Bookcase library) {
     MockPersistance.library = library;
   }
+
+  public static Book getBookFromISBN(String isbn){
+    for(int i=0;i<books.size();++i){
+      if(books.get(i).getIsbn10().equals(isbn)){
+        return books.get(i);
+      }else if (books.get(i).getIsbn13().equals(isbn)) {
+        return books.get(i);
+      }
+    }
+    return null;
+  }
 }
