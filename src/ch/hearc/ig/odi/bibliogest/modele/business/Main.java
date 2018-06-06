@@ -15,7 +15,7 @@ import ch.hearc.ig.odi.bibliogest.modele.api.GoogleTranslateAPI;
 
 public class Main {
   public static void main(String[] args) {
-    //MockPersistance.init();
+    MockPersistance.init();
 
     System.out.println("Bibliothèque :"+MockPersistance.getLibrary());
     System.out.println("Liste d'envies :"+MockPersistance.getWishlist());

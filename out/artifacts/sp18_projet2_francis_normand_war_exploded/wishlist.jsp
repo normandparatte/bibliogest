@@ -5,12 +5,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="includes/header.jsp" %>
-<title>BiblioGest | Ma bibliothèque</title>
+<title>BiblioGest | Wishlist</title>
 <%@include file="includes/navbar.jsp" %>
 
 <div class="container" style="margin-top: 75px">
     <h1 class="my-4">BiblioGest
-        <small>Ma bibliothèque</small>
+        <small>Wishlist</small>
     </h1>
     <div class="row">
         <%
@@ -18,9 +18,9 @@
                 MockPersistance.init();
 
             if (getLibrary() != null) {
-                for (Book book : getLibrary().getBookcase()) {
+                for (Book book : getWishlist().getBookcase()) {
         %>
-        <div class="col-lg-4 portfolio-item">
+        <div class="col-lg-6 portfolio-item">
             <div class="card h-100">
                 <a href="/sp18_projet2_francis_normand_war_exploded/detail.jsp?isbn=<%if(book.getIsbn10()!=null){out.print(book.getIsbn10());}else{out.print(book.getIsbn13());}%>"><img class="card-img-top" src="<%= book.getImageUrl() %>" alt=""></a>
                 <div class="card-body">
