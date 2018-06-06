@@ -1,6 +1,7 @@
 <%@ page import="ch.hearc.ig.odi.bibliogest.modele.business.Book" %>
 <%@ page import="static ch.hearc.ig.odi.bibliogest.controleur.MockPersistance.*" %>
 <%@ page import="ch.hearc.ig.odi.bibliogest.controleur.*" %>
+<%@ page import="static jdk.nashorn.internal.objects.Global.print" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="includes/header.jsp" %>
@@ -20,10 +21,10 @@
         %>
         <div class="col-lg-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="<%= book.getImageUrl() %>" alt=""></a>
+                <a href="/sp18_projet2_francis_normand_war_exploded/detail.jsp?isbn=<%if(book.getIsbn10()!=null){out.print(book.getIsbn10());}else{out.print(book.getIsbn13());}%>"><img class="card-img-top" src="<%= book.getImageUrl() %>" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a href="#"><%= book.getTitle() %>
+                        <a href="/sp18_projet2_francis_normand_war_exploded/detail.jsp?isbn=<%if(book.getIsbn10()!=null){out.print(book.getIsbn10());}else{out.print(book.getIsbn13());}%>"><%= book.getTitle() %>
                         </a>
                     </h4>
                     <p class="card-text"><%= book.getDescription() %>
