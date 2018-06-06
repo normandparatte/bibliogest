@@ -117,6 +117,38 @@ public class MockPersistance {
     }
     return false;
   }
+
+  /**
+   * Retire un livre de la bibliothèque
+   * @param isbn ISBN du livre à retirer
+   */
+  public removeBookFromLibrary(String isbn){
+    for(int i=0;i<library.getBookcase().size();++i){
+      if(library.getBookcase().get(i).getIsbn10().equals(isbn)){
+        library.getBookcase().remove(i);
+        break;
+      }else if (library.getBookcase().get(i).getIsbn13().equals(isbn)) {
+        library.getBookcase().remove(i);
+        break;
+      }
+    }
+  }
+
+  /**
+   * Retire un livre de la liste de souhait
+   * @param isbn ISBN du livre à retirer
+   */
+  public removeBookFromWishlist(String isbn){
+    for(int i=0;i<wishlist.getBookcase().size();++i){
+      if(wishlist.getBookcase().get(i).getIsbn10().equals(isbn)){
+        wishlist.getBookcase().remove(i);
+        break;
+      }else if (wishlist.getBookcase().get(i).getIsbn13().equals(isbn)) {
+        wishlist.getBookcase().remove(i);
+        break;
+      }
+    }
+  }
   // -----------------------------------------------------------------------------------------------
   // ----- GETTERS & SETTERS -----------------------------------------------------------------------
   // -----------------------------------------------------------------------------------------------
