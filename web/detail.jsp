@@ -3,10 +3,13 @@
 <%@ page import="ch.hearc.ig.odi.bibliogest.controleur.*" %>
 <%@ page import="ch.hearc.ig.odi.bibliogest.modele.business.Review" %>
 <%@ page import="ch.hearc.ig.odi.bibliogest.modele.api.GoodreadsAPI" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
     MockPersistance.init();
+
+    DecimalFormat df = new DecimalFormat("0.0");
 
     String isbn = request.getParameter("isbn");
     Book book = MockPersistance.getBookFromISBN(isbn);
@@ -27,14 +30,14 @@
             <img class="card-img-top img-fluid" src="<%=book.getImageUrl()%>" alt="">
             <% if (book.getPersonalReview()!= null){ %>
             <h3>Avis personnel</h3>
-            <h5>note : <%=book.getPersonalReview().getRating()%></h5>
+            <h5>note : <%=df.format(book.getPersonalReview().getRating())%></h5>
             <p class="card-text"><%=book.getPersonalReview().getDescription()%></p>
             <% } %>
         </div>
 
         <div class="col-md-8">
             <h3 class="my-3"><%=book.getTitle()%> <small><%= book.getAuthor().getName() %></small></h3>
-            <h5>Note moyenne : <%=book.getAverageRating()%> <small>(<%=book.getRatingsCount()%>)</small></h5>
+            <h5>Note moyenne : <%=df.format(book.getAverageRating())%> <small>(<%=book.getRatingsCount()%>)</small></h5>
             <% if (!bookIsInLibrary(isbn)){ %>
             <form method="post">
                 <input type="button" name="addlibrary" value="Ajouter à la bibliothèque" id="addlibrary" class="btn btn-success btn-sm btn-block" onclick="<%addBookToLibrary(book);%>">
