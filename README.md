@@ -41,18 +41,12 @@ Toutes les sources sont disponibles dans le repository du projet.
 - Chaque tâche à réaliser dans l'application correspond à une issue dans GitHub
 
 - Les issues sont regroupées par catégories selon les labels suivants :
-
--- administratif
-
--- bug
-
--- documentation
-
--- fonctionnalité
-
--- optimisation
-
--- tests
+  - administratif
+  - bug
+  - documentation
+  - fonctionnalité
+  - optimisation
+  - tests
 
 ## Architecture logiciel
 ### Découpage de l'application
