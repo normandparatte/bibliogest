@@ -24,5 +24,11 @@ public class Main {
 
     System.out.println("getBookFromISBN (de MockPersistance) : "+
         MockPersistance.getBookFromISBN(MockPersistance.getLibrary().getBookcase().get(0).getIsbn10()));
+
+    System.out.println(MockPersistance.bookIsInLibrary("207058464X")); //True
+    System.out.println(MockPersistance.bookIsInWishlist("207058464X")); //False
+
+    System.out.println(MockPersistance.bookIsInLibrary("2070584925")); //False
+    System.out.println(MockPersistance.bookIsInWishlist("2070584925")); //True
   }
 }
