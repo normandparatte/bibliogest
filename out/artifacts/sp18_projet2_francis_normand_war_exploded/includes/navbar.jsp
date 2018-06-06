@@ -16,6 +16,10 @@
                     <a class="nav-link"
                        href="/sp18_projet2_francis_normand_war_exploded/bibliotheque.jsp">Ma bibliothèque</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="/sp18_projet2_francis_normand_war_exploded/wishlist.jsp">Liste d'envies</a>
+                </li>
                 <form class="form-inline my-2 my-lg-0" method="GET" action="recherche.jsp">
                     <input class="form-control mr-sm-2" type="search"
                            placeholder="Rechercher un livre (ISBN)" name="isbn">
