@@ -63,7 +63,12 @@ public class MockPersistance {
    */
   public static void addBookToLibrary(Book book){
     library.addBook(book);
-    addBook(book);
+
+    if (bookIsInWishlist(book.getIsbn10())){
+      removeBookFromWishlist(book.getIsbn10());
+    }else {
+      addBook(book);
+    }
   }
 
   /**
