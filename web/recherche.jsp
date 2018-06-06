@@ -5,6 +5,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
+
+    MockPersistance.init();
+    
     String isbn = request.getParameter("isbn");
 
     if(MockPersistance.getBookFromISBN(isbn)!=null) {

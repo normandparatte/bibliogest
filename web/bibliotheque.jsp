@@ -4,6 +4,10 @@
 <%@ page import="static jdk.nashorn.internal.objects.Global.print" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+    MockPersistance.init();
+%>
+
 <%@include file="includes/header.jsp" %>
 <title>BiblioGest | Ma bibliothèque</title>
 <%@include file="includes/navbar.jsp" %>
@@ -14,9 +18,6 @@
     </h1>
     <div class="row">
         <%
-            if (getLibrary() == null)
-                MockPersistance.init();
-
             if (getLibrary() != null) {
                 for (Book book : getLibrary().getBookcase()) {
         %>
