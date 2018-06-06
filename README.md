@@ -66,3 +66,8 @@ Voici les librairies que nous avons ajoutées au projet :
 - javax.ws.rs:javax.ws.rs-api:2.1
 - org.glassfish.jersey.core:jersey-client:2.26-b03
 - org.json:json:20180130
+
+## Problèmes existants
+Lors de l'affichage d'une page jsp, la méthode dans le onClick du button se déclenche.
+Le code est donc exécuté et le livre est ajouté dans la bibliothèque ainsi que dans la liste de souhait.
+Il faudrait peut être passer par des servlets.
