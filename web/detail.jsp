@@ -38,6 +38,7 @@
             <% if (!bookIsInLibrary(isbn)){ %>
             <form method="post">
                 <input type="button" name="addlibrary" value="Ajouter à la bibliothèque" id="addlibrary" class="btn btn-success btn-sm btn-block" onclick="<%addBookToLibrary(book);%>">
+                <input type="button" name="deletewishlist" value="Supprimer de la liste d'envies" id="deletewishlist" class="btn btn-danger btn-sm btn-block" onclick="<%removeBookFromWishlist(book.getIsbn10());%>">
             </form>
             <% } else { %>
             <form method="post">
