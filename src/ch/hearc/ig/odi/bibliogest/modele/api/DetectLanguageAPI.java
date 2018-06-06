@@ -17,7 +17,7 @@ import com.detectlanguage.DetectLanguage;
 
 public class DetectLanguageAPI {
 
-  private static final String APIKEY = "c177046930ee6a0249548a21067a714a";
+  private static final String APIKEY = "2a4a2cc16d5d051b897d4696442f1113";
 
   /**
    * Permet de detecter le language d'un texte
