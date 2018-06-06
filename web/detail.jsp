@@ -6,6 +6,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
+    MockPersistance.init();
+
     String isbn = request.getParameter("isbn");
     Book book = MockPersistance.getBookFromISBN(isbn);
 %>
@@ -34,7 +36,13 @@
             <h3 class="my-3"><%=book.getTitle()%> <small><%= book.getAuthor().getName() %></small></h3>
             <h5>Note moyenne : <%=book.getAverageRating()%> <small>(<%=book.getRatingsCount()%>)</small></h5>
             <% if (!bookIsInLibrary(isbn)){ %>
-            <button class="btn btn-success btn-sm btn-block" onclick="<%addBookToLibrary(book);%>">Ajouter à la bibliothèque</button>
+            <form method="post">
+                <input type="button" name="addlibrary" value="Ajouter à la bibliothèque" id="addlibrary" class="btn btn-success btn-sm btn-block" onclick="<%addBookToLibrary(book);%>">
+            </form>
+            <% } else { %>
+            <form method="post">
+                <input type="button" name="deletelibrary" value="Supprimer de la bibliothèque" id="deletelibrary" class="btn btn-danger btn-sm btn-block" onclick="<%removeBookFromLibrary(book.getIsbn10());%>">
+            </form>
             <% } %>
             <hr>
             <p class="card-text"><%=book.getDescription()%></p>

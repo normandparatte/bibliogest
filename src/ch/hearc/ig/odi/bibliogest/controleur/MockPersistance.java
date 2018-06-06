@@ -14,6 +14,7 @@ import ch.hearc.ig.odi.bibliogest.modele.business.Book;
 import ch.hearc.ig.odi.bibliogest.modele.business.Bookcase;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 
 public class MockPersistance {
   // -----------------------------------------------------------------------------------------------
@@ -31,11 +32,13 @@ public class MockPersistance {
    * Initialisation des listes ainsi que leurs données
    */
   public static void init() {
-    books = new ArrayList<>();
-    authors = new ArrayList<>();
-    library = new Bookcase();
-    wishlist = new Bookcase();
-    generateMockData();
+    if (getLibrary() == null) {
+      books = new ArrayList<>();
+      authors = new ArrayList<>();
+      library = new Bookcase();
+      wishlist = new Bookcase();
+      generateMockData();
+    }
   }
 
   /**

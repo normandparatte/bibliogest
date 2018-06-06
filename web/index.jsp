@@ -1,7 +1,12 @@
+<%@ page import="ch.hearc.ig.odi.bibliogest.controleur.MockPersistance" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="includes/header.jsp" %>
 <title>BiblioGest | Accueil</title>
 <%@include file="includes/navbar.jsp" %>
+
+<%
+    MockPersistance.init();
+%>
 
 <div class="container">
     <h1 class="my-4">BiblioGest
