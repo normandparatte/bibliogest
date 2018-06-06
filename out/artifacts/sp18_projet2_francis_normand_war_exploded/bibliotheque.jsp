@@ -16,6 +16,7 @@
         <%
             if (getLibrary() == null)
                 MockPersistance.init();
+
             if (getLibrary() != null) {
                 for (Book book : getLibrary().getBookcase()) {
         %>
