@@ -13,7 +13,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import org.json.JSONObject;
 import org.json.XML;
-import org.json.*;
 
 public class GoodreadsAPI {
 
@@ -28,10 +27,8 @@ public class GoodreadsAPI {
         .queryParam("format", "xml");
 
     // Le XML recu est transformer en JSON
-    String test = myResource.request(MediaType.TEXT_PLAIN).get(String.class);
-
     JSONObject xmlJSONObj = XML
-        .toJSONObject(test);
+        .toJSONObject(myResource.request(MediaType.TEXT_PLAIN).get(String.class));
     xmlJSONObj = xmlJSONObj.getJSONObject("GoodreadsResponse").getJSONObject("book");
 
     client.close();

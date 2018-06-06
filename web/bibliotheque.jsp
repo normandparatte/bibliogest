@@ -13,13 +13,14 @@
     </h1>
     <div class="row">
         <%
-            MockPersistance.init();
+            if (getLibrary() == null)
+                MockPersistance.init();
             if (getLibrary() != null) {
                 for (Book book : getLibrary().getBookcase()) {
         %>
         <div class="col-lg-6 portfolio-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="#"><img class="card-img-top" src="<%= book.getImageUrl() %>" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a href="#"><%= book.getTitle() %>
